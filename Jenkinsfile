@@ -37,7 +37,7 @@ pipeline {
                     bat 'docker build -t myapp1:latest .'
                     
                     // Run the Docker container
-                    bat 'docker run -d -p 9090:8080 --name myapp_container myapp1:latest'
+                    bat 'docker run -d -p 9090:8080 --name myapp1_container myapp1:latest'
                 }
             }
         }
