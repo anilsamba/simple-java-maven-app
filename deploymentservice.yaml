@@ -1,16 +1,3 @@
-Update deploymentservice.yaml
-e69cc6d
- · 
-16 hours ago
-History
-Breadcrumbssimple-java-maven-app
-/deploymentservice.yaml
-File metadata and controls
-
-Code
-
-Blame
-32 lines (32 loc) · 539 Bytes
 apiVersion: apps/v1
 kind: Deployment
 metadata:
