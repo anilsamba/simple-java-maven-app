@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: myapp-container
-        image: shama123456/devops-integration:latest
+        image: shama123456/devopsk8s:latest
         ports:
         - containerPort: 8080
 
@@ -24,10 +24,9 @@ kind: Service
 metadata:
   name: myapp-service
 spec:
-  type: NodePort
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
   selector:
     app: myapp
-  ports:
-    - port: 8080
-      targetPort: 8080
-      nodePort: 30007
