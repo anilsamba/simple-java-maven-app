@@ -40,7 +40,7 @@ pipeline {
         stage('Deployment using docker') {
             steps {
                 echo 'deploying'
-                 bat 'docker run -d -p 9090:8080 --name myapp_container myapp1:latest'
+                 bat 'docker run -d -p 9090:8080 --name myapp_container1 myapp1:latest'
             }
         }
     }
