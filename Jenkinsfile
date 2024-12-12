@@ -2,43 +2,44 @@ pipeline {
     agent any
 
     stages {
-        stage('SCM') {
+        stage('code fetch from github') {
             steps {
                 echo 'Fetching the code'
-                git branch: 'branch1', changelog: false, poll: false, url: 'https://github.com/TechWithKhanam/simple-java-maven-app.git'
-            }
-        }
-        stage('BUILD') {
+                git branch: 'branch2', url: 'https://github.com/TechWithKhanam/simple-java-maven-app.git'
+                  }
+         }
+        stage('build code/ trigger Maven ') {
             steps {
-                echo 'Building the project'
+                echo 'building the code'
                 bat 'mvn clean install'
-            }
-        }
-        stage('TEST') {
+                  }
+         }
+        stage('test code/ trigger Maven test ') {
             steps {
-                echo 'Testing the project'
+                echo 'testing the code - SUREFIRE'
                 bat 'mvn test'
-            }
-        }
+                  }
+         }
+        
         stage('VERIFY DOCKERFILE') {
             steps {
                 echo 'Verifying Dockerfile presence'
                 bat 'dir'
             }
         }
-        stage('DEPLOY') {
+        
+        stage('docker image build by jenkins') {
             steps {
-                echo 'Deploying the project in Docker container'
-                script {
-                    // Check if Docker is running and available
-                    bat 'docker --version'
-                    
-                    // Build the Docker image
-                    bat 'docker build -t myapp1:latest .'
-                    
-                    // Run the Docker container
-                    bat 'docker run -d -p 9090:8080 --name myapp_container myapp1:latest'
-                }
+                echo 'building docker image'
+                bat 'docker build -t myapp1:latest .'
+            }
+        }
+        
+        
+        stage('deploy code by jenkins') {
+            steps {
+                echo 'deploying code in docker'
+                bat 'docker run -d -p 9090:8080 --name myapp_container myapp1:latest'
             }
         }
     }
