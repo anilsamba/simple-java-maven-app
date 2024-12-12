@@ -39,7 +39,7 @@ pipeline {
         stage('deploy code by jenkins') {
             steps {
                 echo 'deploying code in docker'
-                bat 'docker run -d -p 9090:8080 --name myapp_container myapp1:latest'
+                bat 'docker run -d -p 9090:8080 --name myapp_container1 myapp1:latest'
             }
         }
     }
