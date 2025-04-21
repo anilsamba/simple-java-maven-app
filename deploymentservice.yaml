@@ -13,10 +13,17 @@ spec:
         app: myapp
     spec:
       containers:
-      - name: myapp-container
-        image: shama123456/devopsk8s:latest
-        ports:
-        - containerPort: 8080
+        - name: myapp-container
+          image: shama123456/devopsk8s:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "256Mi"  # Minimum memory that will be allocated
+              cpu: "500m"      # Minimum CPU that will be allocated
+            limits:
+              memory: "512Mi"  # Maximum memory the container can use
+              cpu: "1"         # Maximum CPU the container can use
 
 ---
 apiVersion: v1
